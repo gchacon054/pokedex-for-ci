@@ -22,5 +22,4 @@ jobs:
         
       # Runs a set of commands using the runners Shell (Running a Python Script)
       - name: Run playbook
-        run: ls -l
-             echo 'Hi ${{ vars.mascot }}'  
+      - run: echo 'Hi ${{ env.mascot }}'  # Hi Tux
