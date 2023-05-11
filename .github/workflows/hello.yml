@@ -1,17 +1,26 @@
-name: Say hello 
+name: Test Variables
 
 on:
   push:
-    branches:
+    branches: 
       - main
-
+ 
 jobs:
-  hello_world:
-    runs-on: ubuntu-20.04
+  deploy:
+    runs-on: ubuntu-latest
+    
+    strategy:
+        matrix:
+          environment: [ dev, test ]
+          
+    environment:  ${{ matrix.environment }}  
     steps:
-      - name: Echo the message
-        run: |
-          echo "Hola midu!"
-      - name: Dime la fecha
-        run: date
-      - run: ls -l
+
+      # Checks-out the repository under $GITHUB-WORKSPACE 
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        
+      # Runs a set of commands using the runners Shell (Running a Python Script)
+      - name: Run playbook
+        run: ls -l
+             echo 'Hi ${{ vars.mascot }}'  
